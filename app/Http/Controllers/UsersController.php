@@ -21,7 +21,7 @@ class UsersController extends Controller
 
     public function index(Request $request){
         
-        $this->authorize('user_access');
+        $this->authorize('user_management');
         return $this->usersService->getAll($request);
 
     }

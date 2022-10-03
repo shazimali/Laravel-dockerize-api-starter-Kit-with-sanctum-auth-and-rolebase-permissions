@@ -16,8 +16,8 @@ class PermissionSeeder extends Seeder
 
         $permissions = [];
         //Users
-        $permissions[0]['name'] = 'User Managment';
-        $permissions[0]['key'] = 'user_managment';
+        $permissions[0]['name'] = 'User Management';
+        $permissions[0]['key'] = 'user_management';
         $permissions[1]['name'] = 'User Create';
         $permissions[1]['key'] = 'user_create';
         $permissions[2]['name'] = 'User Edit';
