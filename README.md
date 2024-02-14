@@ -1,10 +1,12 @@
-## Laravel API
+## docker-compose-laravel-api
 
-Laravel API starter Kit will provide you with the tools for making API's that everyone will love, API Authentication & Permissions are already provided with Laravel sacntum. 
+A pretty simplified Docker Compose workflow of Laravel API starter Kit will provide you with the tools for making API's that everyone will love, API Authentication & Permissions are already provided with Laravel sacntum. 
 
-## Installation
+## Usage
 
-Modify the .env file to suit your needs
+To get started, make sure you have [Docker installed](https://docs.docker.com/docker-for-mac/install/) on your system, and then clone this repository.
+
+Create new .env file and copy all code from .env.example to it, then fill the variables with following values you can you change variables values as per your suit.
 
 ```
 APP_NAME=Laravel
@@ -17,55 +19,43 @@ LOG_CHANNEL=stack
 LOG_LEVEL=debug
 
 DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
+DB_HOST= mysqldb // database container name
 DB_PORT=3306
-DB_DATABASE=laravel
+DB_DATABASE=laravel_database
 DB_USERNAME=root
-DB_PASSWORD=
+DB_PASSWORD=root
 
-BROADCAST_DRIVER=log
-CACHE_DRIVER=file
-QUEUE_CONNECTION=sync
-SESSION_DRIVER=file
-SESSION_LIFETIME=120
-
-MEMCACHED_HOST=127.0.0.1
-
-REDIS_HOST=127.0.0.1
-REDIS_PASSWORD=null
-REDIS_PORT=6379
-
-MAIL_MAILER=smtp
-MAIL_HOST=mailhog
-MAIL_PORT=1025
-MAIL_USERNAME=null
-MAIL_PASSWORD=null
-MAIL_ENCRYPTION=null
-MAIL_FROM_ADDRESS=null
-MAIL_FROM_NAME="${APP_NAME}"
-
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
-AWS_DEFAULT_REGION=us-east-1
-AWS_BUCKET=
-
-PUSHER_APP_ID=
-PUSHER_APP_KEY=
-PUSHER_APP_SECRET=
-PUSHER_APP_CLUSTER=mt1
-
-MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
-MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 ```
-
-When you have the .env with your database connection set up you can run your migrations
 
 ```bash
+docker-compose --env-file .env  up -d
+```
+Once docker all container run successfully you will see below text in yor terminal
+
+Container phpmyadmin     Started                                                                      
+Container mysql_db       Started                                                                   Container app-docker     Started
+
+
+For goto project container, you need to run the below command
+`docker-compose exec -it app-docker bash`
+
+once in come into app-docker container please run these below commands
+
+```
+composer update
 php artisan migrate
+php artisan  db:seed
 ```
 
+Run `composer update` for getting vendor files 
+Run `php artisan migrate` for run all migrations
 Run `php artisan db:seed` and you should have a new user with the roles and permissions set up
 
 ## Tests
 
 Navigate to the project root and run `vendor/bin/phpunit` after installing all the composer dependencies and after the .env file was created.
+
+## Project & PhpMyAdmin Links 
+
+project on http://localhost:8000/
+phpMyAdmin on http://localhost:8001/
