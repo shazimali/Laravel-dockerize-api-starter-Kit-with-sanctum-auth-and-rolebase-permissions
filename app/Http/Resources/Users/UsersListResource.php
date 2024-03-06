@@ -19,7 +19,7 @@ class UsersListResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'assigned_roles' => $this->roles->pluck('name'),
-            'created_at' => $this->created_at,
+            'created_at' => $this->created_at->toDateString(),
         ];
     }
 }

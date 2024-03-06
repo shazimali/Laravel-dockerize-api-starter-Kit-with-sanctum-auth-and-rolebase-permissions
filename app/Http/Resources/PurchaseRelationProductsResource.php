@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Roles;
+namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-
-class RolesListResource extends JsonResource
+class PurchaseRelationProductsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,9 +16,13 @@ class RolesListResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'date' => $this->date,
+            'name'=> $this->product->name,
+            'code'=> $this->product->code,
+            'sku'=> $this->product->sku,
+            'qty' => $this->qty,
+            'price' => $this->price,
             'created_at' => $this->created_at->toDateString(),
-            'permissions' => $this->permissions->pluck('name')
         ];
     }
 }

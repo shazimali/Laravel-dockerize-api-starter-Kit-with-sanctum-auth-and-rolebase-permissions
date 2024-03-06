@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\JsonFormRequest;
 
-class UpdateRoleRequest extends JsonFormRequest
+class UpdateStoreRequest extends JsonFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,20 +19,17 @@ class UpdateRoleRequest extends JsonFormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function rules()
     {
         return [
-            'name'     => [
-                'required',
-                'unique:roles,name,'.$this->id,
-                'max:50',
-            ],
-            'permissions'    => [
-                'required',
-                'array',
-            ],
-        ];   
+            'name' => 'required',
+            'status' => 'required',
+            'city_id' => 'required',
+            'email' => 'nullable|email',
+            'code' => 'required|unique:stores,code,'.$this->id,
+            'phone' => 'nullable|numeric',
+        ];
     }
 }

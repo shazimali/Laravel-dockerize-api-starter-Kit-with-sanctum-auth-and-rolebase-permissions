@@ -9,7 +9,6 @@
 class AuthClass implements AuthInterface{
    
     public function getToken($request){
-        
         if (!Auth::attempt($request->all())) {
             return response()->json([
                 'message' => 'Invalid login details.'

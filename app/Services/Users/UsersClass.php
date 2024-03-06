@@ -12,8 +12,8 @@
 class UsersClass implements UsersInterface{
    
     public function getAll($request){
-
-        return UsersListResource::collection(User::with('roles')->paginate($request->itemPerPage));
+        // return UsersListResource::collection(User::with('roles')->paginate(10));
+        return UsersListResource::collection(User::with('roles')->get());
     }
 
     public function create()
