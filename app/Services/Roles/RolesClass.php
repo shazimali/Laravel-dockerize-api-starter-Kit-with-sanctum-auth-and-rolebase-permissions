@@ -7,14 +7,13 @@
     use App\Models\Permission;
     use App\Http\Resources\Roles\RolesListResource;
     use App\Http\Resources\Permissions\PermissionsResource;
-use App\Http\Resources\Roles\RolesEditResource;
-use DB;
+    use DB;
 
 class RolesClass implements RolesInterface{
 
   public function getAll($request)
     {
-        return  RolesListResource::collection(Role::with('permissions')->get());
+        return  RolesListResource::collection(Role::with('permissions')->paginate($request->itemPerPage));
     }
 
     public function create()
@@ -29,7 +28,7 @@ class RolesClass implements RolesInterface{
     }
     public function edit($id)
     {   
-            return new RolesEditResource(Role::with('permissions')->whereId($id)->first());
+            return new RolesListResource(Role::with('permissions')->whereId($id)->first());
     }
     public function update($request, $id)
     {
@@ -48,7 +47,7 @@ class RolesClass implements RolesInterface{
         if($is_role_attached_with_user)
             return  response()->json(['status' => 201, 'message' => 'Role attached with users, can not delete.']);        
         
-        $role->delete();
+        // $role->delete();
         return  response()->json(['status' => 200, 'message' => 'Role deleted successfully.']);
 
     }

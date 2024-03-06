@@ -26,7 +26,6 @@ class StoreRoleRequest extends JsonFormRequest
         return [
             'name'     => [
                 'required',
-                'unique:roles,name',
                 'max:50',
             ],
             'permissions'    => [

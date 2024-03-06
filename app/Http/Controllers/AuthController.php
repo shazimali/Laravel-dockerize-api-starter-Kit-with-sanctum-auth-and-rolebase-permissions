@@ -16,6 +16,7 @@ class AuthController extends Controller
     }
     
     public function token(TokenRequest $request){
+
       return  $this->authService->getToken($request);
   
     }

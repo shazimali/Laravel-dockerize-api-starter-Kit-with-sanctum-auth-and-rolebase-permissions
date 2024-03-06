@@ -1,14 +1,12 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DeliverablesController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
-use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\PurchasesController;
-use App\Http\Controllers\StoresController;
-
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\Admin\AbilitiesController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -43,41 +41,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/edit/{id}',[RolesController::class, 'edit']);
         Route::put('/update/{id}',[RolesController::class, 'update']);
         Route::delete('/delete/{id}',[RolesController::class, 'destroy']);
-    });
-
-    //Stores
-    Route::prefix('/stores')->group(function () {
-        Route::get('/',[StoresController::class, 'index']);
-        Route::get('/create',[StoresController::class, 'create']);
-        Route::post('/save',[StoresController::class, 'save']);
-        Route::get('/edit/{id}',[StoresController::class, 'edit']);
-        Route::put('/update/{id}',[StoresController::class, 'update']);
-    });
-
-    //Products
-    Route::prefix('/products')->group(function () {
-        Route::get('/',[ProductsController::class, 'index']);
-        Route::post('/store',[ProductsController::class, 'store']);
-        Route::get('/edit/{id}',[ProductsController::class, 'edit']);
-        Route::post('/update/{id}',[ProductsController::class, 'update']);
-    });
-
-    //Purchases
-    Route::prefix('/purchases')->group(function () {
-        Route::get('/',[PurchasesController::class, 'index']);
-        Route::get('/create',[PurchasesController::class, 'create']);
-        Route::post('/store',[PurchasesController::class, 'store']);
-        Route::get('/edit/{id}',[PurchasesController::class, 'edit']);
-        Route::put('/update/{id}',[PurchasesController::class, 'update']);
-    });
-
-    //Deliverables
-    Route::prefix('/deliverables')->group(function () {
-        Route::get('/',[DeliverablesController::class, 'index']);
-        Route::get('/create',[DeliverablesController::class, 'create']);
-        Route::post('/store',[DeliverablesController::class, 'store']);
-        Route::get('/edit/{id}',[DeliverablesController::class, 'edit']);
-        Route::put('/update/{id}',[DeliverablesController::class, 'update']);
     });
     
 
